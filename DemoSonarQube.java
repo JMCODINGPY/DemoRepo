@@ -1,5 +1,3 @@
-#This is a demo test for configuring SonarQube, the below code has no functionality past ingestion. This code is intentinally vulnerable. 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
