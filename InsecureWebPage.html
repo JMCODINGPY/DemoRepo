@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insecure Webpage</title>
+    <script>
+        // Vulnerable to XSS (Cross-Site Scripting)
+        function showUserInput() {
+            var userInput = document.getElementById("userInput").value;
+            document.getElementById("output").innerHTML = "User Input: " + userInput;
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to an Insecure Webpage</h1>
+    
+    <!-- Exposed credentials (Sensitive Data Exposure) -->
+    <p>Admin Username: admin</p>
+    <p>Admin Password: password123</p>
+    
+    <!-- Insecure form (No validation, No HTTPS) -->
+    <form action="http://example.com/login" method="POST">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Login">
+    </form>
+    
+    <!-- XSS vulnerability -->
+    <input type="text" id="userInput" placeholder="Type something">
+    <button onclick="showUserInput()">Submit</button>
+    <p id="output"></p>
+    
+    <!-- SQL Injection vulnerability -->
+    <script>
+        var user = "' OR 1=1 --";
+        console.log("SELECT * FROM users WHERE username = '" + user + "'");
+    </script>
+</body>
+</html>
